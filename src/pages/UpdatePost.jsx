@@ -69,9 +69,14 @@ const UpdatePost = () => {
 
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:3000/posts/${encodeURIComponent(id)}`, {
-          credentials: "include",
-        });
+        const res = await fetch(
+          `https://volunteer-back-nine.vercel.app/posts/${encodeURIComponent(
+            id
+          )}`,
+          {
+            credentials: "include",
+          }
+        );
         if (!res.ok) throw new Error("Failed to load post");
         const data = await res.json();
         const p = normalize(data);
@@ -135,12 +140,17 @@ const UpdatePost = () => {
         deadline: deadline.toISOString(),
       };
 
-      const res = await fetch(`http://localhost:3000/posts/${encodeURIComponent(id)}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(payload),
-      });
+      const res = await fetch(
+        `https://volunteer-back-nine.vercel.app/posts/${encodeURIComponent(
+          id
+        )}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!res.ok) {
         const text = await res.text();

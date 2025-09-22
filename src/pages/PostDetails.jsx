@@ -35,7 +35,9 @@ const PostDetails = () => {
       setLoading(true);
       try {
         const res = await fetch(
-          `http://localhost:3000/posts/${encodeURIComponent(id)}`,
+          `https://volunteer-back-nine.vercel.app/posts/${encodeURIComponent(
+            id
+          )}`,
           { credentials: "include" }
         );
         if (res.ok) {
@@ -44,9 +46,12 @@ const PostDetails = () => {
           return;
         }
         // fallback list
-        const listRes = await fetch("http://localhost:3000/posts", {
-          credentials: "include",
-        });
+        const listRes = await fetch(
+          "https://volunteer-back-nine.vercel.app/posts",
+          {
+            credentials: "include",
+          }
+        );
         if (listRes.ok) {
           const list = await listRes.json();
           const found =
@@ -120,18 +125,21 @@ const PostDetails = () => {
     }
     try {
       setSubmitting(true);
-      const res = await fetch("http://localhost:3000/requests", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          postId: post.id,
-          volunteerName: user.displayName || user.name || "",
-          volunteerEmail: user.email,
-          suggestion,
-          status: "requested",
-        }),
-      });
+      const res = await fetch(
+        "https://volunteer-back-nine.vercel.app/requests",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({
+            postId: post.id,
+            volunteerName: user.displayName || user.name || "",
+            volunteerEmail: user.email,
+            suggestion,
+            status: "requested",
+          }),
+        }
+      );
 
       if (!res.ok) {
         const text = await res.text();

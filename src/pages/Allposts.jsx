@@ -35,7 +35,7 @@ const AllPosts = () => {
         setLoading(true);
 
         // Try backend search support first (keeps it efficient if available)
-        const url = "http://localhost:3000/posts";
+        const url = "https://volunteer-back-nine.vercel.app/posts";
         const res = await fetch(url, { credentials: "include" });
 
         if (!res.ok) throw new Error("Failed to fetch posts");
@@ -59,7 +59,9 @@ const AllPosts = () => {
     const q = searchQuery.trim().toLowerCase();
     if (!q) return allPosts;
     return allPosts.filter((p) =>
-      String(p.title || "").toLowerCase().includes(q)
+      String(p.title || "")
+        .toLowerCase()
+        .includes(q)
     );
   }, [allPosts, searchQuery]);
 

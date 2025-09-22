@@ -38,7 +38,7 @@ const Request = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `http://localhost:3000/requests?volunteerEmail=${encodeURIComponent(
+        `https://volunteer-back-nine.vercel.app/requests?volunteerEmail=${encodeURIComponent(
           volunteerEmail
         )}`,
         { credentials: "include" }
@@ -69,7 +69,9 @@ const Request = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/requests/${encodeURIComponent(id)}`,
+        `https://volunteer-back-nine.vercel.app/requests/${encodeURIComponent(
+          id
+        )}`,
         { method: "DELETE", credentials: "include" }
       );
       if (!res.ok) {
@@ -92,7 +94,11 @@ const Request = () => {
         render: (r) =>
           (r.category && String(r.category).replaceAll?.("-", " ")) || "—",
       },
-      { key: "deadline", label: "Deadline", render: (r) => fmtDate(r.deadline) },
+      {
+        key: "deadline",
+        label: "Deadline",
+        render: (r) => fmtDate(r.deadline),
+      },
       {
         key: "status",
         label: "Status",
@@ -192,7 +198,9 @@ const Request = () => {
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2 justify-end">
                               <Link
-                                to={`/posts/${encodeURIComponent(r.postId || "")}`}
+                                to={`/posts/${encodeURIComponent(
+                                  r.postId || ""
+                                )}`}
                                 className="px-3 py-1.5 rounded-lg border border-green-600 text-green-700 hover:bg-green-50 transition"
                               >
                                 View Post

@@ -57,7 +57,7 @@ const VolunteerNeed = () => {
 
     try {
       setSubmitting(true);
-      const res = await fetch("http://localhost:3000/posts", {
+      const res = await fetch("https://volunteer-back-nine.vercel.app/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

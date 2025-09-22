@@ -44,7 +44,7 @@ const Register = () => {
   };
 
   const saveUserToBackend = async (payload) => {
-    const res = await fetch("http://localhost:3000/users", {
+    const res = await fetch("https://volunteer-back-nine.vercel.app/users", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

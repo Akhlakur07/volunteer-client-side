@@ -27,7 +27,9 @@ const MyPosts = () => {
   };
 
   const getId = (p) =>
-    p.id || (typeof p._id === "string" ? p._id : p._id?.toString?.()) || p._id?.$oid;
+    p.id ||
+    (typeof p._id === "string" ? p._id : p._id?.toString?.()) ||
+    p._id?.$oid;
 
   const load = async () => {
     if (!organizerEmail) {
@@ -39,7 +41,9 @@ const MyPosts = () => {
       setLoading(true);
       // Backend supports ?organizerEmail= filter (from earlier snippet)
       const res = await fetch(
-        `http://localhost:3000/posts?organizerEmail=${encodeURIComponent(organizerEmail)}`,
+        `https://volunteer-back-nine.vercel.app/posts?organizerEmail=${encodeURIComponent(
+          organizerEmail
+        )}`,
         { credentials: "include" }
       );
       if (!res.ok) throw new Error("Failed to load posts");
@@ -65,10 +69,15 @@ const MyPosts = () => {
     if (!ok) return;
 
     try {
-      const res = await fetch(`http://localhost:3000/posts/${encodeURIComponent(id)}`, {
-        method: "DELETE",
-        credentials: "include",
-      });
+      const res = await fetch(
+        `https://volunteer-back-nine.vercel.app/posts/${encodeURIComponent(
+          id
+        )}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
       if (!res.ok) {
         const t = await res.text();
         throw new Error(t || "Delete failed");
@@ -89,7 +98,11 @@ const MyPosts = () => {
         render: (p) =>
           (p.category && String(p.category).replaceAll?.("-", " ")) || "—",
       },
-      { key: "deadline", label: "Deadline", render: (p) => fmtDate(p.deadline) },
+      {
+        key: "deadline",
+        label: "Deadline",
+        render: (p) => fmtDate(p.deadline),
+      },
       { key: "needed", label: "Needed", render: (p) => Number(p.needed ?? 0) },
     ],
     []
@@ -110,9 +123,7 @@ const MyPosts = () => {
         {/* Empty state if not logged in */}
         {!organizerEmail && (
           <div className="rounded-2xl bg-white p-6 border border-gray-200 text-center">
-            <p className="text-gray-700">
-              Please log in to see your posts.
-            </p>
+            <p className="text-gray-700">Please log in to see your posts.</p>
           </div>
         )}
 
@@ -130,7 +141,8 @@ const MyPosts = () => {
                   No posts yet
                 </h2>
                 <p className="text-gray-600 mt-1">
-                  You haven’t added any volunteer need posts. Create your first one now.
+                  You haven’t added any volunteer need posts. Create your first
+                  one now.
                 </p>
                 <div className="mt-4">
                   <Link
@@ -138,7 +150,13 @@ const MyPosts = () => {
                     className="inline-flex items-center gap-2 rounded-xl bg-green-600 text-white px-4 py-2 font-semibold hover:bg-green-700 transition"
                   >
                     Add Volunteer Need Post
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg
+                      className="w-4 h-4"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
                       <path d="M12 5v14" />
                       <path d="M5 12h14" />
                     </svg>
@@ -151,11 +169,21 @@ const MyPosts = () => {
                 <table className="min-w-full text-sm">
                   <thead className="bg-green-50 text-green-800">
                     <tr>
-                      <th className="text-left px-4 py-3 font-semibold">Title</th>
-                      <th className="text-left px-4 py-3 font-semibold">Category</th>
-                      <th className="text-left px-4 py-3 font-semibold">Deadline</th>
-                      <th className="text-left px-4 py-3 font-semibold">Needed</th>
-                      <th className="text-right px-4 py-3 font-semibold">Actions</th>
+                      <th className="text-left px-4 py-3 font-semibold">
+                        Title
+                      </th>
+                      <th className="text-left px-4 py-3 font-semibold">
+                        Category
+                      </th>
+                      <th className="text-left px-4 py-3 font-semibold">
+                        Deadline
+                      </th>
+                      <th className="text-left px-4 py-3 font-semibold">
+                        Needed
+                      </th>
+                      <th className="text-right px-4 py-3 font-semibold">
+                        Actions
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -174,7 +202,12 @@ const MyPosts = () => {
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2 justify-end">
                               <button
-                                onClick={() => navigate(`/posts/${encodeURIComponent(id)}/edit`, { state: { post: p } })}
+                                onClick={() =>
+                                  navigate(
+                                    `/posts/${encodeURIComponent(id)}/edit`,
+                                    { state: { post: p } }
+                                  )
+                                }
                                 className="px-3 py-1.5 rounded-lg border border-green-600 text-green-700 hover:bg-green-50 transition"
                               >
                                 Update

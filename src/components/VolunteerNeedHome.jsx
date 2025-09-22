@@ -37,7 +37,7 @@ const VolunteerNeedHome = () => {
       try {
         setLoading(true);
         const res = await fetch(
-          "http://localhost:3000/posts?upcoming=1&limit=6",
+          "https://volunteer-back-nine.vercel.app/posts?upcoming=1&limit=6",
           { credentials: "include" }
         );
 
@@ -45,9 +45,12 @@ const VolunteerNeedHome = () => {
         if (res.ok) {
           data = await res.json();
         } else {
-          const allRes = await fetch("http://localhost:3000/posts", {
-            credentials: "include",
-          });
+          const allRes = await fetch(
+            "https://volunteer-back-nine.vercel.app/posts",
+            {
+              credentials: "include",
+            }
+          );
           data = allRes.ok ? await allRes.json() : [];
         }
 

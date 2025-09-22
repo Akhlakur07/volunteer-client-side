@@ -40,7 +40,9 @@ const Profile = () => {
       try {
         setLoading(true);
         const res = await fetch(
-          `http://localhost:3000/users/${encodeURIComponent(email)}`,
+          `https://volunteer-back-nine.vercel.app/users/${encodeURIComponent(
+            email
+          )}`,
           { credentials: "include" }
         );
         if (res.ok) {
@@ -107,7 +109,7 @@ const Profile = () => {
           displayName: name,
           photoURL: photo || undefined,
         });
-      // eslint-disable-next-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
       } catch (_) {
         // Non-fatal, we still try to persist in our DB
       }
@@ -121,7 +123,7 @@ const Profile = () => {
         authProvider: provider.includes("google") ? "google" : "password",
         createdAt: dbUser?.createdAt || new Date().toISOString(),
       };
-      const res = await fetch("http://localhost:3000/users", {
+      const res = await fetch("https://volunteer-back-nine.vercel.app/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -147,7 +149,9 @@ const Profile = () => {
     return (
       <div className="min-h-[60vh] grid place-items-center px-4">
         <div className="max-w-md text-center">
-          <h2 className="text-xl font-semibold text-gray-900">You’re not logged in</h2>
+          <h2 className="text-xl font-semibold text-gray-900">
+            You’re not logged in
+          </h2>
           <p className="text-gray-600 mt-1">
             Please log in to view and edit your profile.
           </p>
@@ -295,14 +299,14 @@ const Profile = () => {
               <p className="text-gray-700">
                 <span className="font-semibold text-gray-900">Requests:</span>{" "}
                 {/* optional place for a count if you add GET /requests?volunteerEmail=... count */}
-                — 
+                —
               </p>
             </div>
             <div className="rounded-xl border border-green-100 bg-green-50 px-4 py-3">
               <p className="text-gray-700">
                 <span className="font-semibold text-gray-900">Posts:</span>{" "}
                 {/* optional place for a count if you add GET /posts?organizerEmail=... count */}
-                — 
+                —
               </p>
             </div>
           </div>

@@ -16,7 +16,9 @@ const Navbar = () => {
       if (!user?.email) return;
       try {
         const res = await fetch(
-          `http://localhost:3000/users/${encodeURIComponent(user.email)}`
+          `https://volunteer-back-nine.vercel.app/users/${encodeURIComponent(
+            user.email
+          )}`
         );
         if (!res.ok) return;
         const data = await res.json();
