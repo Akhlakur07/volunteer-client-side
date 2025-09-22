@@ -6,10 +6,10 @@ import Login from "../pages/Login";
 import PrivateRoute from "../context/PrivateRoute";
 import VolunteerNeed from "../pages/VolunteerNeed";
 import PostDetails from "../pages/PostDetails";
-import VolunteerRequest from "../pages/VolunteerRequest";
 import AllPosts from "../pages/Allposts";
 import MyPosts from "../pages/MyPosts";
 import UpdatePost from "../pages/UpdatePost";
+import Request from "../pages/Request";
 
 const router = createBrowserRouter([
   {
@@ -59,11 +59,19 @@ const router = createBrowserRouter([
       {
         path: "/posts/:id/edit",
         element: (
-            <PrivateRoute>
-                <UpdatePost></UpdatePost>
-            </PrivateRoute>
-        )
-      }
+          <PrivateRoute>
+            <UpdatePost></UpdatePost>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-requests",
+        element: (
+          <PrivateRoute>
+            <Request></Request>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

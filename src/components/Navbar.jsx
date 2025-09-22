@@ -111,6 +111,13 @@ const Navbar = () => {
                     >
                       Manage My Posts
                     </Link>
+                    {/* NEW: My Requests */}
+                    <Link
+                      to="/my-requests"
+                      className="block rounded px-3 py-2 text-sm hover:bg-green-50"
+                    >
+                      My Requests
+                    </Link>
                   </div>
                 </details>
               </div>
@@ -198,6 +205,13 @@ const Navbar = () => {
                 className="block hover:text-green-100 transition"
               >
                 Manage My Posts
+              </Link>
+              {/* NEW in mobile: My Requests */}
+              <Link
+                to="/my-requests"
+                className="block hover:text-green-100 transition"
+              >
+                My Requests
               </Link>
             </>
           )}

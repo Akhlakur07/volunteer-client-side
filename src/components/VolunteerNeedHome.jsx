@@ -86,7 +86,7 @@ const VolunteerNeedHome = () => {
   );
 
   return (
-    <section className="mt-10 mx-[10%]">
+    <section className="mt-10 mx-[18%]">
       <div className="mb-5">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
           Volunteer Needs Now
