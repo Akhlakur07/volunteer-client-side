@@ -9,6 +9,7 @@ import PostDetails from "../pages/PostDetails";
 import VolunteerRequest from "../pages/VolunteerRequest";
 import AllPosts from "../pages/Allposts";
 import MyPosts from "../pages/MyPosts";
+import UpdatePost from "../pages/UpdatePost";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/posts/:id/edit",
+        element: (
+            <PrivateRoute>
+                <UpdatePost></UpdatePost>
+            </PrivateRoute>
+        )
+      }
     ],
   },
 ]);
