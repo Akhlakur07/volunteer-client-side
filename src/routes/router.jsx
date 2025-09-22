@@ -3,6 +3,8 @@ import Root from "../pages/Root";
 import Home from "../pages/Home";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
+import PrivateRoute from "../context/PrivateRoute";
+import VolunteerNeed from "../pages/VolunteerNeed";
 
 const router = createBrowserRouter([
   {
@@ -19,8 +21,16 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        Component: Login
-      }
+        Component: Login,
+      },
+      {
+        path: "/posts",
+        element: (
+          <PrivateRoute>
+            <VolunteerNeed></VolunteerNeed>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
