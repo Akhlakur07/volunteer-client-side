@@ -10,11 +10,14 @@ import AllPosts from "../pages/Allposts";
 import MyPosts from "../pages/MyPosts";
 import UpdatePost from "../pages/UpdatePost";
 import Request from "../pages/Request";
+import Profile from "../pages/Profile";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
+    errorElement: <Error/>,
     children: [
       {
         index: true,
@@ -72,6 +75,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/profile",
+        element: (
+            <PrivateRoute>
+                <Profile></Profile>
+            </PrivateRoute>
+        )
+      }
     ],
   },
 ]);
