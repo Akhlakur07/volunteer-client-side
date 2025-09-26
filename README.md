@@ -186,7 +186,3 @@ firebase deploy
 - Consider moving the backend base URL into a Vite env var (e.g., `VITE_API_BASE_URL`) and refactoring fetch calls to use it in one place.
 - Add loading skeletons and empty states where helpful.
 - Add unit tests/integration tests as needed.
-
-## License
-
-MIT — feel free to use and adapt.
